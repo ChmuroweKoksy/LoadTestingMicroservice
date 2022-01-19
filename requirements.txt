@@ -1,0 +1,7 @@
+fastapi
+requests
+gunicorn
+pydantic
+uvicorn
+uvloop
+httptools
