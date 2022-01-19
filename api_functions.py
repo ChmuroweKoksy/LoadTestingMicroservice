@@ -24,4 +24,4 @@ class Info(BaseModel):
     method: str
     url: str
     quantity: int
-    body: str
+    body: dict
