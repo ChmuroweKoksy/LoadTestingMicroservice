@@ -9,7 +9,7 @@ router = APIRouter()
 def send_summary(summary, secret):
     test_result = {"secret": secret, "summary": summary}
     result = requests.post("https://github-chmurowekoksy-postmatebackend-vka23nnggq-uc.a.run.app/collections/report/",
-                           test_result)
+                           json=test_result)
     if result.status_code != 200:
         raise Exception(result.text)
 
