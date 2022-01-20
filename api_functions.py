@@ -19,7 +19,6 @@ def ErrorResponseModel(code, message):
 
 
 class Info(BaseModel):
-    id: str
     secret: str
     method: str
     url: str
