@@ -27,10 +27,11 @@ def test_url(info: Info):
             else:
                 result = request.get(info.url)
 
-            if result.status_code not in summary:
-                summary[result.status_code] = 1
+            status_code = str(result.status_code)
+            if status_code not in summary:
+                summary[status_code] = 1
             else:
-                summary[result.status_code] += 1
+                summary[status_code] += 1
         send_summary(summary, info.secret)
     except Exception as e:
         raise Exception(e)
