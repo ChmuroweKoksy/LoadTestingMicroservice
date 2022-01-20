@@ -5,14 +5,18 @@ from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
-def send_summary(summary):
-    result = requests.post("https://github-chmurowekoksy-postmatebackend-vka23nnggq-uc.a.run.app/report/", summary)
+
+def send_summary(summary, secret):
+    test_result = {"secret": secret, "summary": summary}
+    result = requests.post("https://github-chmurowekoksy-postmatebackend-vka23nnggq-uc.a.run.app/collections/report/",
+                           test_result)
     if result.status_code != 200:
         raise Exception(result.text)
 
+
 def test_url(info: Info):
     try:
-        summary = {"id": info.id}
+        summary = {}
         for _ in range(info.quantity):
 
             method = info.method.lower()
@@ -27,10 +31,9 @@ def test_url(info: Info):
                 summary[result.status_code] = 1
             else:
                 summary[result.status_code] += 1
-        send_summary(summary)
+        send_summary(summary, info.secret)
     except Exception as e:
         raise Exception(e)
-
 
 
 # forward geocoding
